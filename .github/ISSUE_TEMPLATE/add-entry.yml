@@ -1,15 +1,15 @@
 name: Add an entry
-description: Add an entry to the Geode index.
+description: Add an entry to the Sapphire index.
 labels: []
 body: 
   - type: markdown
     attributes:
-      value: "## Geode index entry"
+      value: "## Sapphire index entry"
   - type: input
     id: entry
     attributes:
       label: Your mod link
-      description: Add a link to your .geode file which can be downloaded directly.
-      placeholder: "https://github.com/<user>/<repo>/releases/download/<tag>/<mod>.geode"
+      description: Add a link to your .sapphire file which can be downloaded directly.
+      placeholder: "https://github.com/<user>/<repo>/releases/download/<tag>/<mod>.sapphire"
     validations:
       required: true

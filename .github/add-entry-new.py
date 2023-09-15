@@ -26,18 +26,18 @@ if 'Your mod link' not in issue_body:
 	print('Not a valid index entry')
 	sys.exit(2)
 
-# Download the geode file
+# Download the sapphire file
 try:
 	mod_url = issue_body.replace('### Your mod link\n\n', '')
 
-	urllib.request.urlretrieve(mod_url, 'mod.geode')
+	urllib.request.urlretrieve(mod_url, 'mod.sapphire')
 
 except Exception as inst:
-	fail(f'Could not download the geode file: {inst}')
+	fail(f'Could not download the sapphire file: {inst}')
 
-# Validate the geode file
+# Validate the sapphire file
 try:
-	archive = zipfile.ZipFile('mod.geode', 'r')
+	archive = zipfile.ZipFile('mod.sapphire', 'r')
 	mod_json = json.loads(archive.read('mod.json'))
 	mod_id = mod_json['id']
 	mod_version = mod_json['version'].replace('v', '')
@@ -45,7 +45,7 @@ try:
 	file_list = archive.namelist()	
 
 except Exception as inst:
-	fail(f'Not a valid geode file: {inst}')
+	fail(f'Not a valid sapphire file: {inst}')
 
 
 # Populate entry.json
@@ -61,7 +61,7 @@ try:
 		mod_platforms.append("ios")
 
 	mod_tags = mod_json.get("tags", [])
-	mod_data = open("mod.geode", "rb").read()
+	mod_data = open("mod.sapphire", "rb").read()
 	mod_hash = hashlib.sha256(mod_data).hexdigest()
 
 	# for backwards compatibility

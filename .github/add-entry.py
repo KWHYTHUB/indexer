@@ -24,14 +24,14 @@ def check_duplicates(mod_id, current_repo):
 	except:
 		fail(folder, "Internal error. This is very bad: config.json not found")
 
-geode_file = folder / "mod.geode"
+sapphire_file = folder / "mod.sapphire"
 api_file = folder / "api.zip"
 
-if not geode_file.exists():
+if not sapphire_file.exists():
 	fail(folder, "Unable to find either mod or api")
 
 try:
-	archive = zipfile.ZipFile(geode_file, "r")
+	archive = zipfile.ZipFile(sapphire_file, "r")
 	mod_json_plaintext = archive.read("mod.json")
 	mod_json = json.loads(mod_json_plaintext)
 	archive_files = archive.namelist()
@@ -53,8 +53,8 @@ try:
 		"commit-author": author,
 		"platforms": platforms,
 		"mod": {
-			"download": url + "mod.geode",
-			"hash": hashlib.sha3_256(open(geode_file, "rb").read()).hexdigest()
+			"download": url + "mod.sapphire",
+			"hash": hashlib.sha3_256(open(sapphire_file, "rb").read()).hexdigest()
 		},
 		"tags": mod_json.get("tags", [])
 	}

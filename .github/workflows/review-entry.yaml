@@ -23,7 +23,7 @@ jobs:
         trigger: '!accept'
         # reaction: rocket
       env:
-        GITHUB_TOKEN: '${{ secrets.GEODE_BOT_PUSH_BIN_TOKEN }}'
+        GITHUB_TOKEN: '${{ secrets.SAPPHIRE_BOT_PUSH_BIN_TOKEN }}'
           
     - uses: khan/pull-request-comment-trigger@v1.1.0
       id: check_reject
@@ -32,7 +32,7 @@ jobs:
         trigger: '!reject'
         # reaction: rocket
       env:
-        GITHUB_TOKEN: '${{ secrets.GEODE_BOT_PUSH_BIN_TOKEN }}'
+        GITHUB_TOKEN: '${{ secrets.SAPPHIRE_BOT_PUSH_BIN_TOKEN }}'
         
     - uses: actions/github-script@v3
       id: get_pr
@@ -66,9 +66,9 @@ jobs:
     - name: Checkout Index
       uses: actions/checkout@v3
       with:
-        repository: geode-sdk/mods
+        repository: KWHYTHUB/mods
         path: index
-        token: '${{ secrets.GEODE_BOT_PUSH_BIN_TOKEN }}'
+        token: '${{ secrets.SAPPHIRE_BOT_PUSH_BIN_TOKEN }}'
 
     - uses: actions/setup-python@v4
       with:
@@ -107,10 +107,10 @@ jobs:
       shell: bash
       working-directory: ${{ github.workspace }}/index
       run: |
-        git config --local user.email "${{ secrets.GEODE_BOT_EMAIL }}"
-        git config --local user.name "GeodeBot"
+        git config --local user.email "${{ secrets.SAPPHIRE_BOT_EMAIL }}"
+        git config --local user.name "SapphireBot"
         git add -A
         git commit -m "Update from $PR_AUTHOR"
-        git remote set-url origin "https://GeodeBot:${{ secrets.GEODE_BOT_PUSH_BIN_TOKEN }}@github.com/geode-sdk/mods.git"
+        git remote set-url origin "https://SapphireBot:${{ secrets.SAPPHIRE_BOT_PUSH_BIN_TOKEN }}@github.com/KWHYTHUB/mods.git"
         git push -u origin main || true
         
